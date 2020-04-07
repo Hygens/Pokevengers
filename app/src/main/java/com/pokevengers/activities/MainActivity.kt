@@ -54,39 +54,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun addData() {
-        val apiService = PokemonAPI.getAPIClient()?.create(PokemonAPIInt::class.java)
         val rnd = Random()
         for (i in 1..40) {
-            val call = apiService?.getPokemon(rnd.nextInt(807))
-            call?.enqueue(object : Callback<Pokemon?> {
-                override fun onResponse(call: Call<Pokemon?>?, response: Response<Pokemon?>?) {
-                    if (response?.isSuccessful()!!) {
-                        val pokemon = response.body()
-                        pokemonList?.add(pokemon)
-                        pokemonAdapter?.notifyDataSetChanged()
-                        Log.i("POKEMON", "Name: " + pokemon?.getName())
-                        Log.i("POKEMON", "Attack: " + pokemon?.getAttack())
-                        Log.i("POKEMON", "Defense: " + pokemon?.getDefense())
-                        Log.i("POKEMON", "Health: " + pokemon?.getHealth())
-                        Log.i("POKEMON", "Height: " + pokemon?.getHeight())
-                        Log.i("POKEMON", "Weight: " + pokemon?.getWeight())
-                        Log.i("POKEMON", "Type 0: " + pokemon?.getPokeSlotTypes()?.get(0)?.getPokeType()?.getName())
-                        if (pokemon?.getPokeSlotTypes()?.size!! > 1) {
-                            Log.i("POKEMON", "Type 1: " + pokemon.getPokeSlotTypes()?.get(1)?.getPokeType()?.getName())
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<Pokemon?>?, t: Throwable?) {
-                    Log.e(">>>>>>>>>>>>> ERRÂO >>>>>>>>>>>>\n", t?.getLocalizedMessage())
-                }
-            })
+            apiCall(rnd.nextInt(807).toString())
         }
     }
 
     fun searchPokemon(view: View?) {
-        val apiService = PokemonAPI.getAPIClient()?.create(PokemonAPIInt::class.java)
         val inp: String = search?.getText().toString()
+        apiCall(inp);
+    }
+
+    fun apiCall(inp: String) {
+        val apiService = PokemonAPI.getAPIClient()?.create(PokemonAPIInt::class.java)
         pokemonList?.clear()
         pokemonAdapter?.notifyDataSetChanged()
         if (!inp.isEmpty()) {
@@ -110,9 +90,8 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-
                 override fun onFailure(call: Call<Pokemon?>?, t: Throwable?) {
-                    Log.e(">>>>>>>>>>>>> ERRÂO >>>>>>>>>>>>\n", t?.getLocalizedMessage())
+                    Log.e(">>>>>>>>>>>>> ERROR >>>>>>>>>>>>\n", t?.getLocalizedMessage())
                 }
             })
         } else {
