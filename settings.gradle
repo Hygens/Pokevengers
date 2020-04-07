@@ -1,0 +1,3 @@
+rootProject.name='Pokevengers'
+include ':app'
+
