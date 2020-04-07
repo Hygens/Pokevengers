@@ -78,13 +78,7 @@ class MainActivity : AppCompatActivity() {
                         val pokemon = response?.body()
                         pokemonList?.add(pokemon)
                         pokemonAdapter?.notifyDataSetChanged()
-                        Log.i("POKEMON", "Name: " + pokemon?.getName())
-                        Log.i("POKEMON", "Attack: " + pokemon?.getAttack())
-                        Log.i("POKEMON", "Defense: " + pokemon?.getDefense())
-                        Log.i("POKEMON", "Health: " + pokemon?.getHealth())
-                        Log.i("POKEMON", "Height: " + pokemon?.getHeight())
-                        Log.i("POKEMON", "Weight: " + pokemon?.getWeight())
-                        Log.i("POKEMON", "Type 0: " + pokemon?.getPokeSlotTypes()?.get(0)?.getPokeType()?.getName())
+                        
                         if (pokemon?.getPokeSlotTypes()?.size!! > 1) {
                             Log.i("POKEMON", "Type 1: " + pokemon?.getPokeSlotTypes()?.get(1)?.getPokeType()?.getName())
                         }
