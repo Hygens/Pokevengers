@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity() {
                         val pokemon = response?.body()
                         pokemonList?.add(pokemon)
                         pokemonAdapter?.notifyDataSetChanged()
-                        
+
                         if (pokemon?.getPokeSlotTypes()?.size!! > 1) {
                             Log.i("POKEMON", "Type 1: " + pokemon?.getPokeSlotTypes()?.get(1)?.getPokeType()?.getName())
                         }
