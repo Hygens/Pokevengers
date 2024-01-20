@@ -36,7 +36,7 @@ class PokemonAdapter(private val pokemonList: MutableList<Pokemon?>?) : Recycler
         val pokemon = pokemonList?.get(position)
         holder.name?.setText(pokemon?.getName())
         holder.type?.setText(pokemon?.pokemonTypesToString())
-        Picasso.with(holder.ivPokemon?.getContext())
+        Picasso.get()
                 .load(pokemon?.getSprites()?.frontDefault)
                 .resize(64, 64)
                 .into(holder.ivPokemon)

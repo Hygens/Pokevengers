@@ -41,7 +41,7 @@ class DetailActivity : AppCompatActivity() {
             tvAttack?.setText("Attack: " + pokemon.getAttack().toString())
             tvDefense?.setText("Defense: " + pokemon.getDefense().toString())
             tvSpeed?.setText("Speed: " + pokemon.getSpeed().toString())
-            Picasso.with(ivPokemon?.getContext())
+            Picasso.get()
                     .load(pokemon.getSprites()?.frontDefault)
                     .resize(64, 64)
                     .into(ivPokemon)

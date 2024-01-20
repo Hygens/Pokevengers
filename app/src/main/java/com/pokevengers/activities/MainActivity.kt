@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 override fun onFailure(call: Call<Pokemon?>?, t: Throwable?) {
-                    Log.e(">>>>>>>>>>>>> ERROR >>>>>>>>>>>>\n", t?.getLocalizedMessage())
+                    Log.e(">>>>>>>>>>>>> ERROR >>>>>>>>>>>>\n", t?.getLocalizedMessage().toString())
                 }
             })
         } else {
